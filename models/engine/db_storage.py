@@ -89,7 +89,3 @@ class DBStorage:
         else:
             return len(self.all(cls))
 
-name = "Alabama"
-id = "421a55f4-7d82-47d9-b54c-a76916479545"
-created_at = "2017-03-25 19:44:42" 
-updated_at = "2017-03-25 19:44:42"
