@@ -86,3 +86,42 @@ class TestFileStorage(unittest.TestCase):
     @unittest.skipIf(models.storage_t != 'db', "not testing db storage")
     def test_save(self):
         """Test that save properly saves objects to file.json"""
+
+
+class TestDBstorage(unittest.TestCase):
+    """test file db storage"""
+    def test_get(self):
+        if models.storage.count(State) == 0:
+            # Create and save State objects
+            state1 = State(name="California")
+            state2 = State(name="Nevada")
+            state3 = State(name="Arizona")
+            models.storage.new(state1)
+            models.storage.new(state2)
+            models.storage.new(state3)
+            models.storage.save()
+
+        all_states = models.storage.all(State)
+        print(f"All states: {all_states}")
+        self.assertGreater(len(all_states), 0, "No State objects were created")
+        first_state = list(all_states.values())[0]
+        first_state_id = first_state.id
+        get_obj = models.storage.get(State, first_state_id)
+        self.assertEqual(get_obj.id, first_state_id)
+
+    def test_count(self):
+        """Test the count method"""
+        initial_count = models.storage.count(State)
+        # Create and save State objects
+        state1 = State(name="California")
+        state2 = State(name="Nevada")
+        state3 = State(name="Arizona")
+        models.storage.new(state1)
+        models.storage.new(state2)
+        models.storage.new(state3)
+        models.storage.save()
+
+        new_count = models.storage.count(State)
+        self.assertEqual(new_count, initial_count + 3)
+        total_count = models.storage.count()
+        self.assertGreaterEqual(total_count, new_count)
