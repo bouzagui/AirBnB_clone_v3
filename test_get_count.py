@@ -4,10 +4,8 @@
 from models import storage
 from models.state import State
 
-# Check if there are any State objects
 print("All objects: {}".format(storage.count()))
 print("State objects: {}".format(storage.count(State)))
 
-# Retrieve the first State object
 first_state_id = list(storage.all(State).values())[0].id
 print("First state: {}".format(storage.get(State, first_state_id)))
