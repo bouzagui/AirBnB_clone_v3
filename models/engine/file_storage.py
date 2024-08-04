@@ -73,7 +73,7 @@ class FileStorage:
         """Method to return the object based on the class and its ID"""
         if cls:
             for value in self.__objects.values():
-                if cls == value.__class__ or cls == value.__class__.__name__:
+                if cls == value.__class__ and id == value.id:
                     if id == value.id:
                         return value
         return None
@@ -82,8 +82,6 @@ class FileStorage:
         """Returns the number of objects
         in storage matching the given class."""
         if not cls:
-            all_objs_dict = self.all(cls)
-            count = len(all_objs_dict)
+            return len(self.all())
         else:
-            count = len(self.all())
-        return count
+            return len(self.all(cls))
