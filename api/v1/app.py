@@ -10,9 +10,11 @@ app = Flask(__name__)
 cors = CORS(app, resources={r"/*": {"origins": "0.0.0.0"}})
 app.register_blueprint(app_views, url_prefix="/api/v1")
 
+
 @app.errorhandler(404)
 def page_not_found(e):
-    return jsonify({"error": "Not found"})
+    """page not found"""
+    return jsonify({"error": "Not found"}), 404
 
 
 @app.teardown_appcontext
