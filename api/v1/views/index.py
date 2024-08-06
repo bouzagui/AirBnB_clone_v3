@@ -17,7 +17,10 @@ def status():
         "status": "OK"
     }
 
+
 app_views.route("/api/v1/stats", strict_slashes=False, methods=["GET"])
+
+
 def state():
     """return stats about each class"""
     amenities = storage.count(Amenity)
