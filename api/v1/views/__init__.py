@@ -2,7 +2,6 @@
 """models doc"""
 from flask import Blueprint
 
-app_views = Blueprint("app_views", __name__)
+app_views = Blueprint("app_views", __name__, url_prefix="/api/v1")
 
-# Import views after the Blueprint is created
 from api.v1.views.index import *
