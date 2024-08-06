@@ -4,11 +4,13 @@ from flask import jsonify
 from api.v1.views import app_views
 from models import storage
 
+
 @app_views.route("/status", methods=["GET"], strict_slashes=False)
 def status():
     return jsonify({
         "status": "OK"
         })
+
 
 @app_views.route("/stats", methods=["GET"], strict_slashes=False)
 def stats():
@@ -21,4 +23,6 @@ def stats():
         "states": storage.count("State"),
         "users": storage.count("User")
     }
-    return jsonify(stats)
+    response = jsonify(stats)
+    response.indent = 4
+    return response
