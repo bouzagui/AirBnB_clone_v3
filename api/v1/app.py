@@ -16,6 +16,7 @@ def close(error):
     """close storage"""
     storage.close()
 
+
 if os.getenv("HBNB_API_HOST"):
     host = os.getenv("HBNB_API_HOST")
 else:
