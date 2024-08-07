@@ -18,7 +18,7 @@ def status():
     }
 
 
-app_views.route("/stats", strict_slashes=False, methods=["GET"])
+@app_views.route("/stats", strict_slashes=False, methods=["GET"])
 
 
 def state():
