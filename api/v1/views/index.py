@@ -1,27 +1,25 @@
 #!/usr/bin/python3
-"""models doc"""
-from flask import Flask
+"""Defines routes for the API v1 blueprint."""
 from api.v1.views import app_views
 from models import storage
-from models.amenity import Amenity
 from models.state import State
 from models.city import City
-from models.user import User
-from models.review import Review
+from models.amenity import Amenity
 from models.place import Place
+from models.review import Review
+from models.user import User
 
 
-@app_views.route("/status", strict_slashes="False", methods=["GET"])
+@app_views.route("/status", strict_slashes=False, methods=["GET"])
 def status():
+    """return status for the api"""
     return {
-        "status": "OK"
+        "status": "OK",
     }
 
 
 @app_views.route("/stats", strict_slashes=False, methods=["GET"])
-
-
-def state():
+def stat():
     """return stats about each class"""
     amenities = storage.count(Amenity)
     cities = storage.count(City)
